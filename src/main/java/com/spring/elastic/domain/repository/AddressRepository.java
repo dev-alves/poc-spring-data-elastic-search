@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.spring.elastic.domain.model.User;
+import com.spring.elastic.domain.model.Address;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface AddressRepository extends JpaRepository<Address, Long> {
 
 }

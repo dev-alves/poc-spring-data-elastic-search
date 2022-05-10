@@ -5,22 +5,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.elastic.domain.model.User;
-import com.spring.elastic.domain.service.UserService;
+import com.spring.elastic.domain.model.Address;
+import com.spring.elastic.domain.service.AddressService;
 
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class AddressController {
 
-	private final UserService userService;
-	
-	public UserController(UserService userService) {
+	private final AddressService userService;
+
+	public AddressController(AddressService userService) {
 		this.userService = userService;
 	}
 
-
 	@PostMapping
-	public void save(@RequestBody User user) {
+	public void save(@RequestBody Address user) {
 		userService.save(user);
 	}
 }

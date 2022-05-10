@@ -10,9 +10,9 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-import com.spring.elastic.infrastructure.repository.UserSearchRepository;
+import com.spring.elastic.infrastructure.repository.AddressSearchRepository;
 
-@EnableElasticsearchRepositories(basePackageClasses = UserSearchRepository.class)
+@EnableElasticsearchRepositories(basePackageClasses = AddressSearchRepository.class)
 @Configuration
 public class ElasticConfig extends AbstractElasticsearchConfiguration {
 
@@ -24,7 +24,7 @@ public class ElasticConfig extends AbstractElasticsearchConfiguration {
 				.build();
 		return RestClients.create(clientConfiguration).rest();
 	}
-	
+
 	@Bean
 	public ElasticsearchOperations elasticTemplate() {
 		return new ElasticsearchRestTemplate(elasticsearchClient());

@@ -17,9 +17,9 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "TB_USERS")
-@Document(indexName = "index_users")
-public class User implements Serializable {
+@Table(name = "TB_ADDRESS")
+@Document(indexName = "index_address")
+public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
