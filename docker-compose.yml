@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+   elastic_search:
+      image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
+      environment:
+         - xpack.security.enabled=false
+         - bootstrap.memory_lock=true
+         - discovery.type=single-node
+         - node.name=es01
+         - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+         - "http.host=0.0.0.0"
+         - "transport.host=127.0.0.1"
+      ports:
+         - "9200:9200"
+      networks:
+         - elastic
+   kibana:
+      image: docker.elastic.co/kibana/kibana:7.15.0
+      container_name: kib01
+      environment:
+        - "ELASTICSEARCH_HOSTS=http://elastic_search:9200"
+      ports:
+        - "5601:5601"
+      depends_on:
+         - elastic_search
+      networks:
+         - elastic
+
+networks:
+   elastic:
+      driver: bridge
