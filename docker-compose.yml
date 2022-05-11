@@ -1,6 +1,7 @@
 version: '3.1'
 services:
    elastic_search:
+      container_name: "es01"
       image: docker.elastic.co/elasticsearch/elasticsearch:7.15.0
       environment:
          - xpack.security.enabled=false

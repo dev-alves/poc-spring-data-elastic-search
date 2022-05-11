@@ -10,9 +10,9 @@ import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-import com.spring.elastic.infrastructure.repository.AddressSearchRepository;
+import com.spring.elastic.infrastructure.repository.AddressElasticRepository;
 
-@EnableElasticsearchRepositories(basePackageClasses = AddressSearchRepository.class)
+@EnableElasticsearchRepositories(basePackageClasses = AddressElasticRepository.class)
 @Configuration
 public class ElasticConfig extends AbstractElasticsearchConfiguration {
 

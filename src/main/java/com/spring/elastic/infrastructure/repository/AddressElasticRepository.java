@@ -4,6 +4,6 @@ import com.spring.elastic.domain.model.Address;
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
-public interface AddressSearchRepository extends ElasticsearchRepository<Address, Long> {
+public interface AddressElasticRepository extends ElasticsearchRepository<Address, Long> {
 
 }

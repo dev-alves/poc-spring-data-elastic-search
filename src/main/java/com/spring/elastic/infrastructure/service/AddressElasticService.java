@@ -2,10 +2,7 @@ package com.spring.elastic.infrastructure.service;
 
 import java.util.Arrays;
 import java.util.List;
-
 import com.spring.elastic.domain.model.Address;
-import com.spring.elastic.infrastructure.repository.AddressSearchRepository;
-
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -16,12 +13,9 @@ import org.springframework.stereotype.Service;
 public class AddressElasticService {
 
 	private ElasticsearchOperations elasticsearchOperations;
-	private AddressSearchRepository addressSearchRepository;
 
-	public AddressElasticService(ElasticsearchOperations elasticsearchOperations,
-			AddressSearchRepository addressSearchRepository) {
+	public AddressElasticService(ElasticsearchOperations elasticsearchOperations) {
 		this.elasticsearchOperations = elasticsearchOperations;
-		this.addressSearchRepository = addressSearchRepository;
 	}
 
 	public void save(Address address) {
