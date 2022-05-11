@@ -25,10 +25,8 @@ public class AddressElasticSearchService {
     }
 
     public List<String> search(String street) {
-        FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("street", street)
-                .maxExpansions(20);
-        MatchQueryBuilder matchQueryBuilder = QueryBuilders
-                .matchQuery("street", street);
+        FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("street", street);
+        MatchQueryBuilder matchQueryBuilder = QueryBuilders.matchQuery("street", street);
 
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                 .withQuery(fuzzyQueryBuilder)
