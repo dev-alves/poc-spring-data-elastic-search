@@ -5,6 +5,7 @@ import java.util.List;
 import com.spring.elastic.domain.model.Address;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.FuzzyQueryBuilder;
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHit;
@@ -24,11 +25,14 @@ public class AddressElasticSearchService {
     }
 
     public List<String> search(String street) {
-        FuzzyQueryBuilder fuzzyQueryBuilder =
-                QueryBuilders.fuzzyQuery("street", street).maxExpansions(20);
+        FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("street", street)
+                .maxExpansions(20);
+        MatchQueryBuilder matchQueryBuilder = QueryBuilders
+                .matchQuery("street", street);
 
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                 .withQuery(fuzzyQueryBuilder)
+                .withQuery(matchQueryBuilder)
                 .build();
 
         SearchHits<Address> searchHitsAddress = elasticsearchRestTemplate
