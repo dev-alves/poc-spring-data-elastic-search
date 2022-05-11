@@ -2,8 +2,8 @@ package com.spring.elastic.infrastructure.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import com.spring.elastic.domain.model.Address;
-import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.query.FuzzyQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -38,10 +38,9 @@ public class AddressElasticSearchService {
         SearchHits<Address> searchHitsAddress = elasticsearchRestTemplate
                 .search(nativeSearchQuery, Address.class, IndexCoordinates.of("index_address"));
 
-        List<String> streets = new ArrayList<>();
-        for (SearchHit<Address> searchHits : searchHitsAddress.getSearchHits()) {
-            streets.add(searchHits.getContent().getStreet());
-        }
-        return streets;
+        return searchHitsAddress.getSearchHits()
+                .stream()
+                .map(s -> s.getContent().getStreet())
+                .collect(Collectors.toList());
     }
 }
