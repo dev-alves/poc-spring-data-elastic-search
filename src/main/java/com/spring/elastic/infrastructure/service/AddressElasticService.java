@@ -13,22 +13,20 @@ import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserElasticService {
+public class AddressElasticService {
 
 	private ElasticsearchOperations elasticsearchOperations;
-	private AddressSearchRepository userSearchRepository;
+	private AddressSearchRepository addressSearchRepository;
 
-	public UserElasticService(ElasticsearchOperations elasticsearchOperations,
-			AddressSearchRepository userSearchRepository) {
+	public AddressElasticService(ElasticsearchOperations elasticsearchOperations,
+			AddressSearchRepository addressSearchRepository) {
 		this.elasticsearchOperations = elasticsearchOperations;
-		this.userSearchRepository = userSearchRepository;
+		this.addressSearchRepository = addressSearchRepository;
 	}
 
-	public void save(Address user) {
-		IndexQuery indexQuery = new IndexQueryBuilder()
-				.withId(user.getId().toString())
-				.withObject(user)
-				.build();
+	public void save(Address address) {
+		IndexQuery indexQuery = new IndexQueryBuilder().withId(address.getId().toString())
+				.withObject(address).build();
 		List<IndexQuery> indexQueries = Arrays.asList(indexQuery);
 		elasticsearchOperations.bulkIndex(indexQueries, IndexCoordinates.of("index_address"));
 	}
